@@ -1,6 +1,18 @@
 # n8n Automation Portfolio
 
-Five production-ready n8n projects. Every workflow imports into n8n 2.33.3 and passes connection, schema, and code-node tests.
+Five independent n8n workflow projects for repetitive business tasks, with
+structured LLM outputs and explicit human review paths. The repositories include
+importable workflows, setup instructions, and screenshots; documented checks cover
+n8n 2.33.3 imports, connections, schemas, and Code-node logic.
+
+**Start here:** [SupportPilot AI](https://github.com/pihuts/supportpilot-ai) for
+ticket classification and escalation, or
+[OutreachEngine AI](https://github.com/pihuts/outreachengine-ai) for source-grounded
+drafting with human review. For executable tests and a recorded receipt vision-chain
+demo, see my separate [receipt/email assessment](https://github.com/pihuts/pds-n8n-portfolio).
+
+These are portfolio implementations. Full execution requires configured service
+credentials; the checks above do not represent five live client deployments.
 
 | Project | Category | What it does |
 |---|---|---|
@@ -12,7 +24,7 @@ Five production-ready n8n projects. Every workflow imports into n8n 2.33.3 and p
 
 ## Why these projects
 
-These are the automation categories companies are actively hiring for:
+Each workflow demonstrates a concrete automation use case:
 
 - AI customer support and ticket automation
 - AI sales development and personalized outreach
