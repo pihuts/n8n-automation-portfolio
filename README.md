@@ -1,63 +1,27 @@
 # n8n Automation Portfolio
 
-Five independent n8n workflow projects for repetitive business tasks, with
-structured LLM outputs and explicit human review paths. The repositories include
-importable workflows, setup instructions, and screenshots; documented checks cover
-n8n 2.33.3 imports, connections, schemas, and Code-node logic.
+Five independent workflows for support triage, invoice intake, grounded outreach drafts, meeting actions and job scouting. Built with n8n, structured LLM outputs, webhooks/HTTP APIs, Google Sheets and Gmail.
 
-**Start here:** [SupportPilot AI](https://github.com/pihuts/supportpilot-ai) for
-ticket classification and escalation, or
-[OutreachEngine AI](https://github.com/pihuts/outreachengine-ai) for source-grounded
-drafting with human review. For executable tests and a recorded receipt vision-chain
-demo, see my separate [receipt/email assessment](https://github.com/pihuts/pds-n8n-portfolio).
+**Updated September 2026:** dry-run and enable controls, validated inputs, stable-key duplicate checks, bounded execution, failure alerts and operator recovery instructions. **25 offline smoke tests pass** across the five repositories; GitHub Actions runs each repository's checks.
 
-These are portfolio implementations. Full execution requires configured service
-credentials; the checks above do not represent five live client deployments.
-
-| Project | Category | What it does |
+| Project | Problem and implementation | Inspect |
 |---|---|---|
-| [CareerCompass AI](https://github.com/pihuts/careercompass-ai) | Career | Scrapes HN hiring threads, scores jobs against your profile, drafts cover letters |
-| [SupportPilot AI](https://github.com/pihuts/supportpilot-ai) | Customer support | Classifies tickets, drafts replies, escalates low-confidence cases |
-| [OutreachEngine AI](https://github.com/pihuts/outreachengine-ai) | Sales | Writes personalized outreach grounded in each lead's real website |
-| [LedgerLens AI](https://github.com/pihuts/ledgerlens-ai) | Finance ops | Extracts structured invoice data from PDFs |
-| [ActionFlow AI](https://github.com/pihuts/actionflow-ai) | Productivity | Turns transcripts into summaries, decisions, and tracked action items |
+| [SupportPilot AI](https://github.com/pihuts/supportpilot-ai) | Authenticated ticket intake, structured reply suggestions and human escalation with delivery tracking | [Tests](https://github.com/pihuts/supportpilot-ai/blob/main/smoke_test.py) |
+| [LedgerLens AI](https://github.com/pihuts/ledgerlens-ai) | PDF invoice extraction, vendor/invoice duplicate keys and finance review; no payment or approval | [Tests](https://github.com/pihuts/ledgerlens-ai/blob/main/smoke_test.py) |
+| [OutreachEngine AI](https://github.com/pihuts/outreachengine-ai) | Validated leads and website evidence to Gmail drafts; thin sources need human review | [Tests](https://github.com/pihuts/outreachengine-ai/blob/main/smoke_test.py) |
+| [ActionFlow AI](https://github.com/pihuts/actionflow-ai) | Authenticated meeting transcripts to summaries, decisions, action items and notification tracking | [Tests](https://github.com/pihuts/actionflow-ai/blob/main/smoke_test.py) |
+| [CareerCompass AI](https://github.com/pihuts/careercompass-ai) | HN hiring posts to profile-based scores, cover-letter drafts and a Manila-time digest | [Tests](https://github.com/pihuts/careercompass-ai/blob/main/smoke_test.py) |
 
-## Why these projects
+## What the checks establish
 
-Each workflow demonstrates a concrete automation use case:
+Each project includes importable workflow JSON, a failure-alert workflow, setup instructions, screenshots, fixtures and `python smoke_test.py`. Five checks per repository cover graph/JavaScript validity, preflight modes, input edges, replay/network cases and write guards. The 25-check result was reproduced locally on 29 September 2026.
 
-- AI customer support and ticket automation
-- AI sales development and personalized outreach
-- Document AI and finance operations
-- Meeting intelligence and productivity automation
-- Agentic workflows with LLM structured output
+Dry run is the default. Full execution requires your own n8n instance, configured credentials and environment settings. Follow each README's test-account and go-live checklist before using real data. Offline tests do not establish live Google/OpenAI connectivity, measured LLM accuracy or client deployment.
 
-## Shared stack
+Google Sheets lookup/upsert prevents ordinary sequential duplicates but has no atomic uniqueness constraint. The runbooks explain concurrency limits and recovery after uncertain writes or email delivery. Human review remains explicit: support replies are suggestions, finance approves invoices, and outreach stays in drafts.
 
-- n8n (webhooks, forms, schedules, branches)
-- OpenAI GPT-5.6 family (Sol / Terra / Luna) with strict JSON schemas
-- Google Sheets as a lightweight data layer
-- Gmail for human-in-the-loop notifications
-- Environment variables for configuration
+## More evidence
 
-Model mapping:
+My separate [receipt and email automation assessment](https://github.com/pihuts/pds-n8n-portfolio) includes executable JavaScript tests and a recorded receipt vision-chain demo.
 
-| Project | Model |
-|---|---|
-| CareerCompass AI | `gpt-5.6-sol` (flagship reasoning) |
-| SupportPilot AI | `gpt-5.6-luna` (fast, high-volume) |
-| OutreachEngine AI | `gpt-5.6-terra` (balanced writing) |
-| LedgerLens AI | `gpt-5.6-luna` (fast extraction) |
-| ActionFlow AI | `gpt-5.6-terra` (balanced analysis) |
-
-## Test status
-
-Each workflow:
-
-- Imports successfully into n8n 2.33.3 (`n8n import:workflow`)
-- Has valid node connections and unique node names
-- Passes code-node logic tests with sample data
-
-This repo is the index. Each project has its own public repository with the importable n8n workflow JSON, README, and workflow screenshot.
-
-End-to-end execution requires your own OpenAI, Google Sheets, and Gmail credentials. The AI and persistence nodes are intentionally left unconfigured so you connect your accounts.
+[Portfolio](https://pihuts.netlify.app/) ? [GitHub profile](https://github.com/pihuts) ? [LinkedIn](https://www.linkedin.com/in/peter-gino-pangapalan-78219433a/)
